@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Project_WEB2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('../images/ppp.jpg'); 
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            padding: 10px 0;
+            height: 50px;
+        }
+
+            .navbbar a {
+                float: left;
+                padding: 12px 18px;
+                color: white;
+                text-decoration: none;
+                font-size: 15px;
+                text-transform: uppercase;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbbar a:hover {
+                    background-color: #ff6600; 
+                    color: white;
+                }
+
+            .navbbar img {
+                padding: 0px;
+                margin: 0px;
+                float: left;
+            }
+
+            .navbbar .logo {
+                margin-right: 15px;
+            }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            margin-top: 40px;
+        }
+
+            footer a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 0 10px;
+                transition: color 0.3s ease;
+            }
+
+                footer a:hover {
+                    color: #ff6600;
+                }
+
+        .contact-us ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-us li {
+            margin-bottom: 10px;
+        }
+
+        .contact-us i {
+            margin-right: 10px;
+        }
+
+        .container {
+            margin-top: 70px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-location iframe {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbbar">
+            <img src="/images/AAMAM.png" width="40px" height="40px" class="logo">
+            <a asp-area="" asp-controller="userall" asp-action="customerHome">Car Store</a>
+            <a asp-area="" asp-controller="userall" asp-action="customerHome">Home</a>
+            <a asp-area="" asp-controller="items" asp-action="imageslider">Items Slider</a>
+            <a asp-area="" asp-controller="orders" asp-action="Purchase_page">My Purchase</a>
+            <a asp-area="" asp-controller="items" asp-action="index">Items List</a>
+            <a asp-area="" asp-controller="userall" asp-action="logout">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <div>
+            <p>Contact Us: <i class="fas fa-envelope"></i> admin@example.com | <i class="fas fa-phone"></i> +123 456 7890</p>
+            <div>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

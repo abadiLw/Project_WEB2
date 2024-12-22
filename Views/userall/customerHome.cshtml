@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Project_WEB2.Models.items>
+@{
+    ViewData["Title"] = "customerHome";
+}
+@{Layout = "~/Views/Shared/customerhomelayout.cshtml";}
+
+<html>
+    <head>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .edcn {
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+    </head>
+
+    <body>
+
+    <h1 class="edcn">customerHome</h1>
+    <h4 class="edcn">welcome @ViewData["Name"]</h4>
+
+    <section class="jumbotron-section text-center">
+        <div class="jumbotron">
+            <h1 class="display-2">car store</h1>
+            <p class="lead "><b>The best car store in medinah</b></p>
+        </div>
+    </section>
+    
+
+    <div class="container-fluid">
+        <div class="row">
+            <h5 class="edcn">Discount Cars !</h5>
+            
+            @foreach (var item in Model)
+            {
+                if (item.discount== "yes")
+                {
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            @item.name
+                        </div>
+                        <div class="card-body">
+                            <img src="~/images/@item.imagefilename" height="100" />
+                        </div>
+                            <div class="card-footer">
+                                <a asp-controller="items" asp-action="Details" asp-route-id="@item.Id">More Details</a> 
+                            </div>
+
+
+                    </div>
+                </div>
+                }
+            }
+            
+
+        </div>
+    </div>
+
+    </body>
+</html>
+

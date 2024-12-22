@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Project_WEB2.Models.orderdetail>
+
+
+@if ((string)ViewData["role"] == "customer")
+{
+
+    Layout = "~/Views/Shared/customerhomelayout.cshtml";
+}
+
+@if ((string)ViewData["role"] == "admin")
+{
+
+    Layout = "~/Views/Shared/adminhomelayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Purchase_page</title>
+</head>
+<body>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.buydate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalprice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.buydate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalprice)
+            </td>
+
+        </tr>
+                            }
+    </tbody>
+</table>
+</body>
+</html>

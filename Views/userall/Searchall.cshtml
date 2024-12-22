@@ -1,0 +1,171 @@
+﻿@model Project_WEB2.Models.userall
+@{
+    Layout = null;
+}
+@{
+    Layout = "~/Views/Shared/adminhomelayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Searchall</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-search {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .form {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .txt-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: 2px solid #000;
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-style: inherit;
+            font-weight: bold;
+        }
+
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        .select2 {
+            margin-bottom: 15px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        .col-sm-2,
+        .col-sm-20 {
+            display: inline-block;
+            width: 30%;
+            margin-bottom: 10px;
+        }
+
+        .col-sm-2 {
+            font-weight: bold;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .fs-4 {
+            font-size: 18px;
+        }
+
+        .fs-5 {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-search">
+        <div class="form">
+            <h1 class="txt-title">Search All</h1>
+            <hr class="border-2 opacity-100" />
+            <form asp-action="SearchAll" style="margin-left: 30px; margin-right: 15px">
+                <div class="form-group">
+                    <label class="control-label" style="font-style:inherit ">Role :</label><br />
+                    <select class="form-control" name="cata" id="ca" onchange="gettitle()">
+                        <option value="0">Please select</option>
+                        <option value="admin">admin</option>
+                        <option value="customer">customer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Name :</label><br />
+                    <select class="form-control" name="tit" id="ti"> </select>
+                </div>
+                <div class="select2">
+                    
+                </div>
+                <button value="Show">Search</button>
+            </form>
+            <div>
+
+                <hr class="border-2 opacity-100" />
+
+                <dl class="row">
+                    <dt class=" text-capitalize fs-4 ">
+                        @Html.DisplayNameFor(model => model.name):
+                    </dt>
+                    <dd class=" text-danger fs-5">
+                        @Html.DisplayFor(model => model.name)
+                    </dd>
+                    <dt class=" text-capitalize fs-4">
+                        @Html.DisplayNameFor(model => model.RegistDate):
+                    </dt>
+                    <dd class=" text-danger fs-5">
+                        @Html.DisplayFor(model => model.RegistDate)
+                    </dd>
+                    <dt class=" text-capitalize fs-4">
+                        @Html.DisplayNameFor(model => model.password):
+                    </dt>
+                    <dd class=" text-danger fs-5">
+                        @Html.DisplayFor(model => model.password)
+                    </dd>
+                    <dt class=" text-capitalize fs-4">
+                        @Html.DisplayNameFor(model => model.role):
+                    </dt>
+                    <dd class=" text-danger fs-5">
+                        @Html.DisplayFor(model => model.role)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    async function gettitle() {
+        var cc = document.getElementById('ca').value;
+        var response = await fetch('/getnameAPI/' + cc);
+        let x = await response.json();
+        var dd = "<option> Please select</option>";
+        for (i = 0; i < x.length; i++) {
+            dd += "<option>" + x[i].name + "</option>";
+        }
+        document.getElementById("ti").innerHTML = dd;
+    }
+</script>
+
+</html>

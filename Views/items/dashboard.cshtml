@@ -1,0 +1,158 @@
+﻿@model Project_WEB2.Models.items
+@{
+
+    Layout = "~/Views/Shared/adminhomelayout.cshtml";
+}
+
+
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Cars', 'number of Cars'],
+                ['sedan', @ViewData["d1"]],
+                ['SUV', @ViewData["d2"]],
+                ['Truck', @ViewData["d4"]],
+                ['VAN', @ViewData["d5"]],
+
+            ]);
+
+            var options = {
+                title: 'number of Cars'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        #chart_div {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+        }
+
+        .col-md-3 {
+            flex: 0 0 30%;
+            max-width: 30%;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #ffc107;
+            
+            color: #fff;
+            padding: 10px;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .card-footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center">Dashboard</h1>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-center'>Sedan</div>
+                <div class='card-body'><img src='~/images/Accord.png' ; width='50px'></div>
+                <div class='card-footer'>
+                    Number of Cars <div> @ViewData["d1"] </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-center'>Total cars ordered</div>
+                
+                <div class='card-footer'>
+                    Number of Cars <div> @ViewData["d3"] </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-center'>SUV</div>
+                <div class='card-body'><img src='~/images/MGH.png' ; width='50px'></div>
+                <div class='card-footer'>
+                    Number of Cars <div>@ViewData["d2"] </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-center'>Trucks</div>
+                <div class='card-body'><img src='~/images/Toyota-Hilux-Transparent-PNG.png' ; width='50px'></div>
+                <div class='card-footer'>
+                    Number of Cars <div>@ViewData["d4"] </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-center'>VANs</div>
+                <div class='card-body'><img src='~/images/2016-chevrolet-express-2500-chevrolet-van-car-chevrolet-66519025e5c50bbc91aae1aa63a0ae82.png' width='50px'></div>
+                <div class='card-footer'>
+                    Number of Cars <div>@ViewData["d5"] </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

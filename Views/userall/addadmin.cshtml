@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewData["Title"] = "addadmin";
+    Layout = "~/Views/Shared/adminhomelayout.cshtml";
+}
+
+<h1>addadmin</h1>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-registration {
+            margin: 50px auto;
+            width: 50%;
+        }
+
+        .form {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        .txt-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+
+        form {
+            margin-left: 30px;
+            margin-right: 15px;
+        }
+
+        .txt-field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .btn-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+            .btn-dark:hover {
+                background-color: #1d2124;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+            .btn-danger:hover {
+                background-color: #bd2130;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-registration">
+        <div class="form" style="padding: 15px">
+            <div class="txt-title">
+                <h1>Add Admin</h1>
+                <hr />
+            </div>
+            <form action="addadmin" id="Form" method="post"
+                  style="margin-left: 30px; margin-right: 15px">
+                <div class="txt-field">
+                    <label for="UName-r">Admin Name :</label><br />
+                    <input type="text"
+                           id="UName-r"
+                           name="adminname"
+                           required
+                           max="8"
+                           placeholder="Enter Name" />
+                </div>
+                <div class="txt-field">
+                    <label for="pass-r" id="label">Password :</label> <br />
+                    <input type="password"
+                           id="pass-r"
+                           name="password"
+                           required
+                           placeholder="Enter Password" />
+                </div>
+                <div class="txt-field">
+                    <label for="cpass-r" id="label1">Confirm Password :</label> <br />
+                    <input type="password"
+                           id="cpass-r"
+                           name="cpassword"
+                           required
+                           placeholder="Enter Confirm Password" />
+                </div>
+                <div class="error">
+                    <p> @ViewData["Message"]</p>
+                </div>
+                <div class="btn-group gap-2">
+                    <button type="submit" id="but1" class="btn btn-dark">
+                        Add
+                    </button>
+                    <button type="reset" id="but2" class="btn btn-danger">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

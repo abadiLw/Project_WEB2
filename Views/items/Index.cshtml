@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Project_WEB2.Models.items>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Items</h1>
+
+@if ((string)ViewData["role"] == "customer")
+{
+
+    Layout = "~/Views/Shared/customerhomelayout.cshtml";
+}
+@if ((string)ViewData["role"] == "admin")
+{
+
+    Layout = "~/Views/Shared/adminhomelayout.cshtml";
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 3px;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            color: #fff;
+        }
+
+            .btn-info:hover {
+                background-color: #138496;
+                border-color: #117a8b;
+            }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529;
+        }
+
+            .btn-warning:hover {
+                background-color: #e0a800;
+                border-color: #d39e00;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+    </style>
+
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.discount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imagefilename)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.category)
+                    </td>
+                    <td>
+                        <img src="~/images/@item.imagefilename" height="50" />
+                    </td>
+
+
+                    @if ((string)ViewData["role"] == "customer")
+                    {
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="@("#detailModal-" + @item.Id)">Detail</button>
+
+                            @await Html.PartialAsync("details_items",item)
+                        </td>
+                    }
+
+                    @if ((string)ViewData["role"] == "admin")
+                    {
+                        <td class="col-sm-0">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="@("#editModal-" + @item.Id)">edit</button>
+                            @await Html.PartialAsync("edit_items",item)
+                        </td>
+                        <td class="col-sm-0">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@("#deleteModal-" + @item.Id)">delete</button>
+                            @await Html.PartialAsync("delete_items",item)
+                        </td>
+                        <td class="col-sm-0">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="@("#detailModal-" + @item.Id)">detail</button>
+                            @await Html.PartialAsync("details_items",item)
+                        </td>
+
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+
